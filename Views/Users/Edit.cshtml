@@ -1,0 +1,42 @@
+﻿@model CenedexUniversityWebSystem.Models.UserViewModel
+@{
+    ViewData["Title"] = "User Account";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="card">
+    <div class="card-header"><h5><i class='fa fa-pencil'></i> Edit User Account</h5></div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="Edit" method="post">
+                    <h4>Edit User Account.</h4>
+                    <hr />
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" for="Id" />
+                    <div class="form-group">
+                        <label asp-for="Email"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Password"></label>
+                        <input asp-for="Password" class="form-control" readonly value="(x => x.Password)" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ConfirmPassword"></label>
+                        <input asp-for="ConfirmPassword" class="form-control" readonly value="(x => x.Password)" /> 
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save User</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

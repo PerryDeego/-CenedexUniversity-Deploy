@@ -1,0 +1,159 @@
+﻿@model IEnumerable<CenedexUniversityWebSystem.Models.StudentGrade>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Student Grades List</h1>
+
+<div class="card">
+    <div class="card-header">
+        <partial name="_FilterSearch" />
+        <h3 class="italic">
+            <i class="fa fa-address-card-o" aria-hidden="true"></i> Student Grades
+            <a asp-action="Create" class="btn btn-outline-primary pull-right"><i class="fa fa-plus-circle"> Create Grade</i></a>
+            <a href="#" class="create-modal btn btn-outline-success pull-right" id="add_create_modal">
+                <i class="fa fa-plus-circle"> Create Report</i>
+            </a>
+        </h3>
+        <small class="text-info">(Only users associated with the Admin Roles & Permissions have privilege to modifiy contents)</small>
+    </div>
+</div>
+<div class="table-responsive-xs">
+    <table class="table table-hover table-xs" id="tbl-list">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Student)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Course)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Grade)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateTaken)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedBy)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedAt)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Student.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Course.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Grade)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateTaken)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedBy)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedAt)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a> |
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <!-- paging control for navigation to the previous page, next page, etc -->
+    <partial name="~/Views/Shared/_Pagination.cshtml" />
+</div>
+
+
+
+
+@* -- Modal Form for student's coure taken between dates. -- *@
+<div id="modalForm" class="modal fade" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="card">
+                <div class="card-header">
+                    <div class="modal-header">
+                        <h1 class="modal-title text-info text-uppercase"></h1>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="modal-body">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h6 class="font-italic">Fill in the information below for course taken between dates</h6>
+                                <hr />
+                                <form asp-action="CreateReport" name="modal-form" id="modal-form" novalidate="novalidate">
+                                    @*-- Show errors for input fields. --*@
+                                    <span id="error_output"></span>
+                                    <div class="form-row">
+                                        <div class="col form-group">
+                                            <label class="font-weight-bold" for="FirstName">First Name</label>
+                                            <input class="form-control" type="text" name="FirstName" placeholder="First Name" required>
+                                        </div>
+                                        <div class="col form-group">
+                                            <label class="font-weight-bold" for="LastName">Last Name</label>
+                                            <input class="form-control" type="text" name="LastName" placeholder="Last Name" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col form-group">
+                                            <label class="font-weight-bold" for="CousreName">Cousre Name</label>
+                                            <input class="form-control" type="text" name="CousreName" placeholder="Cousre Name" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col form-group">
+                                            <label class="font-weight-bold" for="FromDate">From Date</label>
+                                            <input class="form-control" type="date" name="FromDate" placeholder="From Date" required>
+                                        </div>
+                                        <div class="col form-group">
+                                            <label class="font-weight-bold" for="ToDate">To Date</label>
+                                            <input class="form-control" type="date" name="ToDate" placeholder="To Date" required>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-primary" type="submit" id="add">
+                                            <i class="fa fa-plus-circle">Save</i>
+                                        </button>
+                                        <button class="btn btn-warning" type="button" data-dismiss="modal">
+                                            <i class="fa fa-close">Cancel</i>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

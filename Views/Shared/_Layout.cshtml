@@ -1,0 +1,58 @@
+﻿@******  Created by D. Perry | dd.perry@hotmail.com ******@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
+
+    <title>@ViewData["Title"] - Cenedex University  Web System</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/stylesheet.css" />
+
+    <link rel="stylesheet" href="~/lib/font-awesome-4.7.0/css/font-awesome.css" />
+
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <style>
+        h1, h2 {
+            font-family: 'Kaushan Script', cursive;
+        }
+        .sidenav {
+            height: 100%;
+            background-color: #009999;
+            overflow-x: hidden;
+
+        }
+
+        .login-main-text {
+            padding: 60px;
+            color: #fff;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    @* --- Componet invoke her for dynamic navigation menu bar. -- -*@
+    @await Component.InvokeAsync("MainMenu")
+    <div class="container">
+        <main role="main" id="main-container">
+            @* --- SweetAlert notification messages. --- *@
+            <partial name="_AlertMessages" />
+            @RenderBody()
+        </main>
+    </div>
+
+
+    @* --- Fetch footer view from shared folder. -- -*@
+    <partial name="_Footer" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

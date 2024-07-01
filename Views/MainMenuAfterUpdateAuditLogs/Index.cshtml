@@ -1,0 +1,92 @@
+﻿@model IEnumerable<CenedexUniversityWebSystem.Models.MainMenuAfterUpdateAuditLog>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>MainMenu Updated Audit Logs</h1>
+
+<div class="card">
+    <div class="card-header">
+        <partial name="_FilterSearch" />
+        <h4 class="italic">
+            <i class="fa fa-th"></i>MainMenu Updated Logs
+        </h4>
+        <small class="text-info">(Only users associated with the Admin Roles & Permissions have privilege to modifiy contents)</small>
+    </div>
+</div>
+<div class="table-responsive-xs">
+    <table class="table table-hover table-xs" id="tbl-list">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.MainMenuId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MenuName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MenuUrl)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedBy)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedAt)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ModifiedBy)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ModifiedAt)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Action)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MainMenuId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MenuName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MenuUrl)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedBy)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedAt)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ModifiedBy)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ModifiedAt)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Action)
+                    </td>
+                    <td>
+                        @*<a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i>Edit</a> |*@
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

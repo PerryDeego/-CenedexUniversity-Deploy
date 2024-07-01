@@ -1,0 +1,72 @@
+﻿@model IEnumerable<CenedexUniversityWebSystem.Models.MainMenu>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>MainMenu List</h1>
+
+<div class="card">
+    <div class="card-header">
+        <partial name="_FilterSearch" />
+        <h4 class="italic">
+            <i class="fa fa-th"></i>MainMenu
+            <a asp-action="Create" class="btn btn-outline-primary pull-right"><i class="fa fa-plus-circle"> Create MainMenu</i></a>
+        </h4>
+        <small class="text-info">(Only users associated with the Admin Roles & Permissions have privilege to modifiy contents)</small>
+    </div>
+</div>  
+<div class="table-responsive-xs">
+    <table class="table table-hover table-xs" id="tbl-list">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.MenuName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MenuUrl)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedBy)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedAt)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MenuName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MenuUrl)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedBy)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedAt)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a> |
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <!-- paging control for navigation to the previous page, next page, etc -->
+    <partial name="~/Views/Shared/_Pagination.cshtml" />
+</div>
+  
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,102 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@model IEnumerable<IdentityRole>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>User Roles</h1>
+<hr />
+<div class="card">
+    <div class="card-header">
+        <strong>Create New Roles</strong>
+        <small>enter role details here</small>
+    </div>
+    <div class="card-body">
+        <form method="post" asp-action="addrole" asp-controller="roles">
+            <div class="input-group">
+                <input name="roleName" class="form-control w-25" placeholder="Add Role here" required/>
+                <span class="input-group btn">
+                    <button class="btn btn-outline-info"><i class="fa fa-plus-circle"></i> Add New Role</button>
+                </span>
+            </div>
+        </form>
+    </div>
+ </div>
+<br/>
+<br />
+
+
+<div class="card">
+    <div class="card-header">
+        <partial name="_FilterSearch" />
+        <h3 class="italic">
+            <i class="fa fa-th"></i>Roles
+        </h3>
+        <small class="text-info">(Only users associated with the Admin Roles & Permissions have privilege to modifiy contents)</small>
+    </div>
+</div>  
+<div class="table-responsive-xs">
+    <table class="table table-hover table-xs" id="tbl-list">
+        <thead>
+            <tr>
+                <th>Role</th>
+                <th>Id</th>
+                <th style="width:10%">Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var role in Model)
+            {
+                <tr>
+                    <td>@role.Name</td>
+                    <td>@role.Id</td>
+
+
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Action
+                            </button>
+                            <div class="dropdown-menu shadow animated--grow-in">
+                                <a class="dropdown-item">
+                                    <i class="fas fa-pencil-alto"></i>
+                                    Edit
+                                </a>
+                                <form class="d-inline">
+                                    <a class="dropdown-divider">
+                                        <i class="fa fa-trash"></i>
+                                        Delete
+                                    </a>
+                                </form>
+                                @if (role.Name != "SuperAdmin")
+                                {
+                                    <a style="margin-right:16px" asp-controller="Permission" asp-action="Index" asp-route-roleId="@role.Id" class="dropdown-item">
+                                        <i class="fa fa-wrench"></i>
+                                        Manage Permissions
+                                    </a>
+                                }
+                            </div>
+                        </div>
+                    </td>
+                    @*
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@role.Id" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i>Edit</a> |
+                            <a asp-action="Details" asp-route-id="@role.Id" class="btn btn-info btn-sm"><i class="fa fa-eye"></i>Details</a> |
+                            <a asp-action="Delete" asp-route-id="@role.Id" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>Delete</a>
+                        </td>
+                    *@
+                </tr>
+            }
+        </tbody>
+    </table>
+    <!-- paging control for navigation to the previous page, next page, etc -->
+    <partial name="~/Views/Shared/_Pagination.cshtml" />
+</div>
+  
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+}

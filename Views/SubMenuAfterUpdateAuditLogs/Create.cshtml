@@ -1,0 +1,78 @@
+﻿@model CenedexUniversityWebSystem.Models.SubMenuAfterUpdateAuditLog
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>SubMenuAfterUpdateAuditLog</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SubMenuId" class="control-label"></label>
+                <input asp-for="SubMenuId" class="form-control" />
+                <span asp-validation-for="SubMenuId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SubMenuName" class="control-label"></label>
+                <input asp-for="SubMenuName" class="form-control" />
+                <span asp-validation-for="SubMenuName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SubMenuUrl" class="control-label"></label>
+                <input asp-for="SubMenuUrl" class="form-control" />
+                <span asp-validation-for="SubMenuUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MainMenuId" class="control-label"></label>
+                <input asp-for="MainMenuId" class="form-control" />
+                <span asp-validation-for="MainMenuId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreatedBy" class="control-label"></label>
+                <input asp-for="CreatedBy" class="form-control" />
+                <span asp-validation-for="CreatedBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreatedAt" class="control-label"></label>
+                <input asp-for="CreatedAt" class="form-control" />
+                <span asp-validation-for="CreatedAt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ModifiedBy" class="control-label"></label>
+                <input asp-for="ModifiedBy" class="form-control" />
+                <span asp-validation-for="ModifiedBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ModifiedAt" class="control-label"></label>
+                <input asp-for="ModifiedAt" class="form-control" />
+                <span asp-validation-for="ModifiedAt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label"></label>
+                <input asp-for="UserId" class="form-control" />
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Action" class="control-label"></label>
+                <input asp-for="Action" class="form-control" />
+                <span asp-validation-for="Action" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

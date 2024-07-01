@@ -1,0 +1,13 @@
+﻿<!-- paging control for navigation to the previous page, next page, etc -->
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page = page }),
+    new PagedListRenderOptions
+    {
+        PageClasses = new string[] { "page-link" },
+        UlElementClasses = new string[] { "pagination" },
+        LiElementClasses = new string[] { "page-item" },
+        DisplayItemSliceAndTotal = true,
+        DisplayEllipsesWhenNotShowingAllPageNumbers = true,
+        DisplayLinkToFirstPage = X.PagedList.Mvc.Common.PagedListDisplayMode.IfNeeded,
+        DisplayLinkToLastPage = X.PagedList.Mvc.Common.PagedListDisplayMode.IfNeeded
+    }
+)

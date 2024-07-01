@@ -1,0 +1,58 @@
+﻿@model CenedexUniversityWebSystem.Models.StudentGrade
+
+@{
+    ViewData["Title"] = "Create";
+}
+<h1>Student Grade</h1>
+<hr />
+<div class="card">
+    <div class="card-header"><h5><i class='fa fa-check-circle-o'></i> create new student here</h5></div>
+    <div class="card-body">
+
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Course" class="control-label"></label>
+                        <select asp-for="CourseId" class="form-control" asp-items="ViewBag.CourseId">
+                            <option value="">-- Select Course --</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Student" class="control-label"></label>
+                        <select asp-for="StudentId" class="form-control" asp-items="ViewBag.StudentId">
+                            <option value="">-- Select Student --</option>
+                        </select>
+                        <span asp-validation-for="StudentId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Grade" class="control-label"></label>
+                        <select asp-for="Grade" class="form-control" asp-items="@Html.GetEnumSelectList<Grade>()">
+                            <option value="">-- Select Grade --</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DateTaken" class="control-label"></label>
+                        <input asp-for="DateTaken" class="form-control" />
+                        <span asp-validation-for="DateTaken" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
+
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+}

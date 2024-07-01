@@ -1,0 +1,14 @@
+﻿@* --- SweetAlert notification messages. --- *@
+@if (TempData["mssg"] != null)
+{
+    <script type="text/javascript">
+        Swal.fire({
+            position: 'top',
+            icon: 'success',
+            title: 'RECORD STATUS',
+            text: '@TempData["mssg"]',
+            showConfirmButton: false,
+            timer: 2500
+        })
+    </script>
+}
